@@ -91,7 +91,7 @@ module.exports = {
         },
         {
           name: "System stats",
-          value: `\`\`\`yml\nPlatform: ${osver}\nUptime: ${sysuptime}\nProcessor: ${processor}\nCore: ${cores} Core(s)\`\`\``,
+          value: `\`\`\`yml\nPlatform: ${osver}\nUptime: ${sysuptime}\nProcessor: ${processor}\n\`\`\``,
           inline: false,
         },
       ])
