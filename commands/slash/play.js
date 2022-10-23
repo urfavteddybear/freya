@@ -14,14 +14,20 @@ const command = new SlashCommand()
     let channel = await client.getChannel(client, interaction);
     if (!channel) return;
 
-    let node = await client.getLavalink(client);
-    if (!node) {
-      return interaction.reply({
-        embeds: [client.ErrorEmbed("Lavalink node is not connected")],
-      });
-    }
-    let query = options.getString("query", true);
     let player = client.createPlayer(interaction.channel, channel);
+		if (client.manager) {
+			player = client.createPlayer(interaction.channel, channel);
+		} else {
+			return interaction.reply({
+				embeds: [
+					new MessageEmbed()
+						.setColor("RED")
+						.setDescription("Lavalink node is not connected"),
+				],
+			});
+		}
+    let query = options.getString("query", true);
+    
     if (!interaction.member.voice.channel) {
       const joinEmbed = new MessageEmbed()
         .setColor(client.config.embedColor)
